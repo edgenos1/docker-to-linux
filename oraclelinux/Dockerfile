@@ -3,4 +3,7 @@ LABEL com.iximiuz-project="docker-to-linux"
 
 RUN mkdir -p /usr/share/info
 RUN yum-config-manager --enable ol7_latest
-yum -y update
+RUN yum -y update
+RUN yum -y install grub2 kernel-uek dracut-fips dracut-fips-aesni
+RUN ln -s /boot/vmlinuz-* /boot/vmlinuz
+RUN ln -s /boot/initramfs-* /boot/initramfs
