@@ -28,4 +28,3 @@ losetup -D
 
 echo -e "\n[Write syslinux MBR]"
 dd if=/usr/lib/syslinux/mbr/mbr.bin of=/os/linux.img bs=440 count=1 conv=notrunc
-
