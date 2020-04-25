@@ -3,7 +3,7 @@ LOOPDEVICE=$1
 set -e
 
 echo -e "[Create disk image]"
-dd if=/dev/zero of=/os/linux.img bs=$(expr 1024 \* 1024 \* 1024) count=1
+dd if=/dev/zero of=/os/linux.img bs=1m count=4096
 
 echo -e "\n[Make partition]"
 sfdisk /os/linux.img < /os/partition.txt
