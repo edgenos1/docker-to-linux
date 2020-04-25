@@ -61,7 +61,7 @@ linux.dir: linux.tar
 	mkdir linux.dir
 	tar -xvf linux.tar -C linux.dir
 
-linux.img: builder linux.dir
+linux.img: builder linux.tar
 	@echo ${COL_GRN}"[Create ${DISTR} disk image]"${COL_END}
 	docker run -it \
 		-v `pwd`:/os:rw \

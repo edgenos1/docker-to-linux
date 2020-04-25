@@ -3,7 +3,7 @@ LOOPDEVICE=$1
 set -e
 
 echo -e "[Create disk image]"
-dd if=/dev/zero of=/os/linux.img bs=1m count=4096
+dd if=/dev/zero of=/os/linux.img bs=1048576 count=4096
 
 echo -e "\n[Make partition]"
 sfdisk /os/linux.img < /os/partition.txt
@@ -16,7 +16,7 @@ mkfs.ext3 $LOOPDEVICE
 echo -e "\n[Copy linux directory structure to partition]"
 mkdir -p /os/mnt
 mount -t auto $LOOPDEVICE /os/mnt/
-cp -R /os/linux.dir/. /os/mnt/
+tar -xvf /os/linux.tar -C /os/mnt/
 
 echo -e "\n[Setup extlinux]"
 extlinux --install /os/mnt/boot/
