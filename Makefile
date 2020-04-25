@@ -1,7 +1,7 @@
 COL_RED="\033[0;31m"
 COL_GRN="\033[0;32m"
 COL_END="\033[0m"
-LOOPDEVICE=$(shell losetup -f)
+LOOPDEVICE=$(shell losetup -f || echo "/dev/loop0")
 
 REPO=docker-to-linux
 
@@ -14,6 +14,9 @@ ubuntu: ubuntu.img
 
 .PHONY:
 alpine: alpine.img
+
+.PHONY:
+oracle: oracle.img
 
 .PHONY:
 debian.tar:
@@ -39,6 +42,14 @@ alpine.tar:
 .PHONY:
 alpine.img:
 	@make DISTR="alpine" linux.img
+
+.PHONY:
+oracle.tar:
+	@make DISTR="oracle" linux.tar
+
+.PHONY:
+oracle.img:
+	@make DISTR="oracle" linux.img
 
 linux.tar:
 	@echo ${COL_GRN}"[Dump ${DISTR} directory structure to tar archive]"${COL_END}
